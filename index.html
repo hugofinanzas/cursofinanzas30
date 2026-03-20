@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximiza tus Finanzas Personales en 30 días</title>
+    
+    <!-- Tailwind CSS para el diseño minimalista y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons para iconografía consistente -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuración de colores personalizados en Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0A2540', // Azul marino muy profesional
+                            lightBlue: '#1D3B5C',
+                            green: '#10B981', // Verde esmeralda (Crecimiento/Dinero)
+                            darkGreen: '#059669',
+                            bg: '#F8FAFC' // Fondo minimalista casi blanco
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pequeños ajustes personalizados */
+        body {
+            background-color: #F8FAFC;
+            color: #0A2540;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #0A2540, #10B981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dropdown-menu {
+            display: none;
+        }
+        .has-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center text-white">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-brand-green"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-brand-blue">Finanzas<span class="text-brand-green">30</span></span>
+                </div>
+
+                <!-- Menú de Escritorio -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-brand-green font-medium transition-colors">Inicio</a>
+                    <a href="#beneficios" class="text-gray-600 hover:text-brand-green font-medium transition-colors">Beneficios</a>
+                    
+                    <!-- Menú con Submenú -->
+                    <div class="relative has-dropdown py-4">
+                        <button class="flex items-center text-gray-600 hover:text-brand-green font-medium transition-colors">
+                            El Curso <i data-lucide="chevron-down" class="w-4 h-4 ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 overflow-hidden">
+                            <a href="#temario" class="block px-4 py-3 text-sm text-gray-700 hover:bg-brand-bg hover:text-brand-green">Temario Semanal</a>
+                            <a href="#instructor" class="block px-4 py-3 text-sm text-gray-700 hover:bg-brand-bg hover:text-brand-green">Sobre el Instructor</a>
+                            <a href="#faq" class="block px-4 py-3 text-sm text-gray-700 hover:bg-brand-bg hover:text-brand-green">Preguntas Frecuentes</a>
+                        </div>
+                    </div>
+
+                    <a href="#testimonios" class="text-gray-600 hover:text-brand-green font-medium transition-colors">Testimonios</a>
+                </div>
+
+                <!-- Botón CTA (Llamado a la acción) -->
+                <div class="hidden md:flex">
+                    <a href="#inscripcion" class="bg-brand-green hover:bg-brand-darkGreen text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Inscribirse Ahora
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-blue focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-green hover:bg-gray-50">Inicio</a>
+            <a href="#beneficios" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-green hover:bg-gray-50">Beneficios</a>
+            <a href="#temario" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-green hover:bg-gray-50">Temario</a>
+            <a href="#testimonios" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-green hover:bg-gray-50">Testimonios</a>
+            <a href="#inscripcion" class="block w-full text-center mt-4 bg-brand-green text-white px-5 py-3 rounded-xl font-semibold">Inscribirse Ahora</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                
+                <!-- Textos Hero -->
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-brand-darkGreen font-semibold text-sm mb-6">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
+                        </span>
+                        Inscripciones Abiertas - Cupos Limitados
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-brand-blue leading-[1.1] mb-6">
+                        Toma el control absoluto de tu <span class="gradient-text">futuro financiero</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        El curso <strong>"Maximiza tus Finanzas Personales en 30 días"</strong> te enseña el sistema paso a paso para salir de deudas, crear ahorros sólidos e invertir con seguridad, sin importar tu nivel de ingresos actual.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#inscripcion" class="flex justify-center items-center gap-2 bg-brand-blue hover:bg-brand-lightBlue text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                            Comenzar el Reto de 30 Días
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#temario" class="flex justify-center items-center gap-2 bg-white border-2 border-gray-200 hover:border-brand-blue text-brand-blue px-8 py-4 rounded-xl font-semibold text-lg transition-all">
+                            Ver el Temario
+                        </a>
+                    </div>
+                    
+                    <div class="mt-8 flex items-center gap-4 text-sm text-gray-500">
+                        <div class="flex -space-x-2">
+                            <img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Alumno">
+                            <img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="Alumno">
+                            <img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Alumno">
+                        </div>
+                        <p>Únete a más de <strong class="text-brand-blue">2,500+</strong> estudiantes transformando sus vidas.</p>
+                    </div>
+                </div>
+
+                <!-- Imagen Hero -->
+                <div class="relative lg:ml-auto">
+                    <!-- Elementos decorativos -->
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-green/20 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-blue/20 rounded-full blur-3xl"></div>
+                    
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" alt="Crecimiento Financiero" class="relative rounded-2xl shadow-2xl object-cover h-[500px] w-full z-10">
+                    
+                    <!-- Tarjeta flotante -->
+                    <div class="absolute bottom-10 -left-8 bg-white p-4 rounded-xl shadow-xl z-20 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="line-chart" class="text-brand-green w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">De la ansiedad</p>
+                            <p class="text-base sm:text-lg font-bold text-brand-blue leading-tight">al orden financiero en 30 días</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section id="beneficios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-green font-semibold tracking-wide uppercase text-sm mb-3">¿Por qué tomar este curso?</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Un sistema simple para resultados extraordinarios</h3>
+                <p class="text-gray-600 text-lg">Olvídate de las hojas de cálculo complicadas y la jerga financiera. Aprenderás principios prácticos que puedes aplicar desde el día 1.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tarjeta 1 -->
+                <div class="bg-brand-bg rounded-2xl p-8 hover:shadow-xl transition-shadow border border-gray-100 group">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="scissors" class="text-brand-blue w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-blue mb-3">Elimina Deudas Tóxicas</h4>
+                    <p class="text-gray-600 leading-relaxed">Descubre los métodos "Bola de Nieve" y "Avalancha" para liquidar tarjetas de crédito y préstamos personales en tiempo récord.</p>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="bg-brand-bg rounded-2xl p-8 hover:shadow-xl transition-shadow border border-gray-100 group">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="piggy-bank" class="text-brand-green w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-blue mb-3">Automatiza tus Ahorros</h4>
+                    <p class="text-gray-600 leading-relaxed">Configura un sistema donde el ahorro ocurra sin que te des cuenta. Crea tu fondo de emergencia a prueba de balas.</p>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="bg-brand-bg rounded-2xl p-8 hover:shadow-xl transition-shadow border border-gray-100 group">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="trending-up" class="text-brand-blue w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-blue mb-3">Invierte con Seguridad</h4>
+                    <p class="text-gray-600 leading-relaxed">Desmitificamos la inversión. Aprende a poner tu dinero a trabajar para ti mediante fondos indexados y opciones de bajo riesgo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temario Section -->
+    <section id="temario" class="py-20 bg-brand-blue text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-brand-green font-semibold tracking-wide uppercase text-sm mb-3">El Plan de Acción</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6">Tu transformación en 4 Semanas</h3>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        El programa está diseñado para no abrumarte. Cada semana desbloqueas un módulo con videos cortos, plantillas descargables y ejercicios prácticos de 15 minutos diarios.
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold text-xl text-brand-green">1</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Semana 1: Diagnóstico y Presupuesto</h4>
+                                <p class="text-gray-400">Radiografía de tu situación actual y creación de un presupuesto realista que sí puedas cumplir.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold text-xl text-brand-green">2</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Semana 2: Destrucción de Deudas</h4>
+                                <p class="text-gray-400">Estrategias de negociación con bancos y plan de pago acelerado para liberarte del estrés.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold text-xl text-brand-green">3</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Semana 3: Blindaje y Ahorro</h4>
+                                <p class="text-gray-400">Creación del fondo de emergencia y optimización de gastos sin sacrificar tu estilo de vida.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold text-xl text-brand-green">4</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Semana 4: Multiplicación (Inversión)</h4>
+                                <p class="text-gray-400">Conceptos básicos de inversión, interés compuesto y cómo abrir tu primera cuenta de inversión.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Planificación" class="rounded-2xl shadow-2xl border-4 border-white/10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section id="testimonios" class="py-20 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-green font-semibold tracking-wide uppercase text-sm mb-3">Casos de Éxito</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Personas reales. Resultados reales.</h3>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonio 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Siempre pensé que las finanzas eran para matemáticos. Este curso me demostró lo contrario. En 30 días logré pagar una tarjeta que llevaba arrastrando por 2 años. ¡Increíble!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80" alt="Laura G." class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold text-brand-blue">Laura G.</h4>
+                            <p class="text-sm text-gray-500">Diseñadora Gráfica</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"El módulo de inversiones me abrió los ojos. Pasé de tener mi dinero estancado en el banco a generar rendimientos mensuales. La mejor inversión que he hecho ha sido este curso."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Carlos M." class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold text-brand-blue">Carlos M.</h4>
+                            <p class="text-sm text-gray-500">Ingeniero de Software</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Las plantillas de presupuesto son oro puro. Por primera vez llego a fin de mes con dinero sobrante. La metodología es directa, sin rodeos y sumamente efectiva."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Ana P." class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold text-brand-blue">Ana P.</h4>
+                            <p class="text-sm text-gray-500">Emprendedora</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inscripción / CTA Final -->
+    <section id="inscripcion" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-brand-blue"></div>
+        <!-- Patrón decorativo -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#10B981 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl text-center">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-brand-blue mb-4">Empieza a maximizar tus ingresos hoy</h2>
+                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">Obtén acceso de por vida al curso, actualizaciones futuras, plantillas exclusivas y acceso a nuestra comunidad privada de estudiantes.</p>
+                
+                <div class="flex justify-center items-end gap-2 mb-8">
+                    <span class="text-5xl font-extrabold text-brand-blue">$199</span>
+                    <span class="text-xl text-gray-500 line-through mb-1">$663</span>
+                    <span class="text-brand-green font-semibold mb-2 ml-2">¡Ahorras un 70% hoy!</span>
+                </div>
+
+                <a href="https://www.paypal.com/ncp/payment/QQV26MV2NDQ82" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center gap-2 bg-brand-green hover:bg-brand-darkGreen text-white px-10 py-5 rounded-2xl font-bold text-xl transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 w-full md:w-auto">
+                    Sí quiero inscribirme ahora
+                    <i data-lucide="lock" class="w-5 h-5"></i>
+                </a>
+                
+                <p class="mt-6 text-sm text-gray-500 flex items-center justify-center gap-2">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-brand-green"></i>
+                    Garantía de devolución del 100% de tu dinero por 14 días. Cero riesgos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#06182C] py-12 border-t border-white/10 text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <!-- Logo Footer -->
+                <div class="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity">
+                    <i data-lucide="trending-up" class="w-5 h-5 text-brand-green"></i>
+                    <span class="font-bold text-lg text-white tracking-tight">Finanzas<span class="text-brand-green">30</span></span>
+                </div>
+                
+                <!-- Enlaces -->
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Términos y Condiciones</a>
+                    <a href="#" class="hover:text-white transition-colors">Política de Privacidad</a>
+                    <a href="#" class="hover:text-white transition-colors">Contacto</a>
+                </div>
+                
+                <!-- Copyright -->
+                <div>
+                    &copy; <span id="year"></span> Maximiza tus Finanzas. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        // Lógica del menú móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Actualizar el año del copyright automáticamente
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
